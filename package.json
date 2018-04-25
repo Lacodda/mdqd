@@ -1,0 +1,60 @@
+{
+  "name": "mqd",
+  "version": "0.0.1",
+  "description": "Markdown quick documentation",
+  "license": "MIT",
+  "main": "index.js",
+  "homepage": "https://github.com/lacodda/mqd",
+  "author": {
+    "name": "Kirill Lahtachev",
+    "email": "lahtachev@gmail.com",
+    "url": "http://lacodda.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lacodda/mqd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lacodda/mqd/issues"
+  },
+  "keywords": [
+    "markdown",
+    "documentation"
+  ],
+  "scripts": {
+    "test": "npm run lint && npm run cover",
+    "test:prod": "cross-env BABEL_ENV=production npm run test",
+    "test:only": "mocha --require babel-core/register --require babel-polyfill --recursive",
+    "test:watch": "npm test -- --watch",
+    "cover": "istanbul cover _mocha -- --require babel-core/register --require babel-polyfill --recursive",
+    "lint": "eslint src test"
+  },
+  "files": [
+    "lib/"
+  ],
+  "engines": {
+    "node": ">=8"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.3",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-minify": "^0.4.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "chai": "^4.1.2",
+    "cross-env": "^5.1.4",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "istanbul": "^1.1.0-alpha.1",
+    "mocha": "^5.1.1",
+    "nyc": "^11.7.1",
+    "rimraf": "^2.6.2"
+  },
+  "dependencies": {
+    "marked": "^0.3.19"
+  }
+}
