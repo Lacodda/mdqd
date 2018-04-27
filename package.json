@@ -22,12 +22,7 @@
     "documentation"
   ],
   "scripts": {
-    "test": "npm run lint && npm run cover",
-    "test:prod": "cross-env BABEL_ENV=production npm run test",
-    "test:only": "mocha --require babel-core/register --require babel-polyfill --recursive",
-    "test:watch": "npm test -- --watch",
-    "cover": "istanbul cover _mocha -- --require babel-core/register --require babel-polyfill --recursive",
-    "lint": "eslint src test"
+    "test": "mocha"
   },
   "files": [
     "lib/"
@@ -44,17 +39,20 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-minify": "^0.4.0",
     "babel-preset-stage-2": "^6.24.1",
-    "chai": "^4.1.2",
     "cross-env": "^5.1.4",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.11.0",
+    "gulp": "github:gulpjs/gulp#4.0",
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^5.1.1",
     "nyc": "^11.7.1",
     "rimraf": "^2.6.2"
   },
   "dependencies": {
-    "marked": "^0.3.19"
+    "marked": "^0.3.19",
+    "plugin-error": "^1.0.1",
+    "through2": "^2.0.3",
+    "vinyl": "^2.1.0"
   }
 }
