@@ -15,13 +15,13 @@ mqd description
 You can install the package from npm
 
 ```bash
-npm i -g mqd
+npm i mqd
 ```
 
 ## Usage
 
 ```bash
-git clone https://github.com/lacodda/mqd.git
+
 ```
 
 ## Tests
