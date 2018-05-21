@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Markdown quick documentation",
   "license": "MIT",
-  "main": "index.js",
+  "main": "src/index.js",
   "homepage": "https://github.com/lacodda/mqd",
   "author": {
     "name": "Kirill Lahtachev",
@@ -22,7 +22,7 @@
     "documentation"
   ],
   "scripts": {
-    "test": "mocha"
+    "test": "mocha -R spec ./test/setup.js ./test/**/*.spec.js"
   },
   "files": [
     "src/"
@@ -32,25 +32,26 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-minify": "^0.4.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-minify": "^0.4.3",
     "babel-preset-stage-2": "^6.24.1",
-    "cross-env": "^5.1.4",
+    "chai": "^4.1.2",
+    "cross-env": "^5.1.5",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.11.0",
-    "gulp": "github:gulpjs/gulp#4.0",
-    "istanbul": "^1.1.0-alpha.1",
-    "mocha": "^5.1.1",
-    "nyc": "^11.7.1",
+    "eslint-plugin-import": "^2.12.0",
+    "gulp": "^3.9.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0",
+    "nyc": "^11.8.0",
     "rimraf": "^2.6.2"
   },
   "dependencies": {
-    "marked": "^0.3.19",
+    "marked": "^0.4.0",
     "plugin-error": "^1.0.1",
     "through2": "^2.0.3",
     "vinyl": "^2.1.0"

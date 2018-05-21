@@ -26,7 +26,7 @@ npm i mqd
 
 ## Tests
 
-```
+```bash
 npm test
 ```
 

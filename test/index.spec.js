@@ -1,13 +1,11 @@
-'use strict';
-
 const Vinyl = require('vinyl');
-const path = require('path');
+const { resolve } = require('path');
 const fs = require('fs');
 const assert = require('assert');
 const m = require('../src');
 
-const fixturesInputPath = path.resolve(__dirname, 'fixtures', 'index.md');
-const fixturesOutputPath = path.resolve(__dirname, 'fixtures', 'output.html');
+const fixturesInputPath = resolve(__dirname, 'fixtures', 'index.md');
+const fixturesOutputPath = resolve(__dirname, 'fixtures', 'output.html');
 
 it('default test', (done) => {
   const stream = m();
