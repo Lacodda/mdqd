@@ -2,13 +2,13 @@ const Vinyl = require('vinyl');
 const { resolve } = require('path');
 const fs = require('fs');
 const assert = require('assert');
-const m = require('../src');
+const mqd = require('../src');
 
 const fixturesInputPath = resolve(__dirname, 'fixtures', 'index.md');
 const fixturesOutputPath = resolve(__dirname, 'fixtures', 'output.html');
 
-it('default test', (done) => {
-  const stream = m();
+it('default test', async (done) => {
+  const stream = await mqd();
 
   stream.on('data', (file) => {
     const fixtures = fs.readFileSync(fixturesOutputPath, 'utf-8');
