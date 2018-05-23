@@ -7,8 +7,8 @@ const mqd = require('../src');
 const fixturesInputPath = resolve(__dirname, 'fixtures', 'index.md');
 const fixturesOutputPath = resolve(__dirname, 'fixtures', 'output.html');
 
-it('default test', async (done) => {
-  const stream = await mqd();
+it('default test', (done) => {
+  const stream = mqd();
 
   stream.on('data', (file) => {
     const fixtures = fs.readFileSync(fixturesOutputPath, 'utf-8');
