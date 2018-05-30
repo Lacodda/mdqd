@@ -3,8 +3,8 @@ const marked = require('marked');
 const PluginError = require('plugin-error');
 const fs = require('fs');
 
-const templateFile = __dirname + '/templates/template.html';
-const assetsPath = __dirname + '/assets/**/*';
+const templateFile = __dirname + '/templates/index.html';
+const assetsPath = __dirname + '/templates/assets/**/*';
 
 module.exports = options => through.obj((file, enc, cb) => {
   if (file.isNull()) {
