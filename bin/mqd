@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
 const yargs = require('yargs');
-const lyrn = require('../lib/lyrn');
+const mqd = require('../lib/mqd');
 
 const parsed = yargs.argv;
 const cmd = parsed._.shift();
 
 (async () => {
   try {
-    await lyrn.load();
-    await lyrn.cli[cmd].apply(null, parsed._);
+    await mqd.load();
+    await mqd.cli[cmd].apply(null, parsed._);
   } catch (error) {
     console.error(error);
   }

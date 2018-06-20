@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Markdown quick documentation",
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "./lib/mqd.js",
   "homepage": "https://github.com/lacodda/mqd",
   "author": {
     "name": "Kirill Lahtachev",
@@ -22,7 +22,12 @@
     "documentation"
   ],
   "scripts": {
-    "test": "mocha -R spec ./test/setup.js ./test/**/*.spec.js"
+    "test": "mocha -R spec ./test/setup.js ./test/**/*.spec.js && npm run test:clean",
+    "test:clean": "rm -rf ./test/tmp"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "mqd": "./bin/mqd"
   },
   "files": [
     "bin/",
