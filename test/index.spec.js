@@ -2,7 +2,7 @@ const Vinyl = require('vinyl');
 const { resolve } = require('path');
 const fs = require('fs');
 const assert = require('assert');
-const mqd = require('../src');
+const mqd = require('../lib/index');
 
 const fixturesInputPath = resolve(__dirname, 'fixtures', 'index.md');
 const fixturesOutputPath = resolve(__dirname, 'fixtures', 'output.html');
