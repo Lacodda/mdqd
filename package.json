@@ -60,6 +60,7 @@
     "fs-extra": "^6.0.1",
     "marked": "^0.4.0",
     "plugin-error": "^1.0.1",
+    "showdown": "^1.8.6",
     "through2": "^2.0.3",
     "vinyl": "^2.2.0",
     "yargs": "^11.0.0"
