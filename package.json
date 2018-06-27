@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "test": "mocha -R spec ./test/setup.js ./test/**/*.spec.js && npm run test:clean",
-    "test:clean": "rm -rf ./test/tmp"
+    "test:clean": "echo"
   },
   "preferGlobal": true,
   "bin": {
@@ -34,7 +34,7 @@
     "lib/"
   ],
   "engines": {
-    "node": ">=8"
+    "node": ">=8.10"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
