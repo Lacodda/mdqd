@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/mqd.png" width="320" alt="mqd">
+  <img src="mqd.png" width="320" alt="mqd">
 </p>
 <h1 align="center">Markdown quick documentation</h1>
 <br>

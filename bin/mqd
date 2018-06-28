@@ -1,15 +1,14 @@
 #!/usr/bin/env node
 
-const yargs = require('yargs');
+const args = require('yargs').argv._;
 const mqd = require('../lib/mqd');
 
-const parsed = yargs.argv;
-const cmd = parsed._.shift();
+const cmd = args.shift();
 
 (async () => {
   try {
     await mqd.load();
-    await mqd.cli[cmd].apply(null, parsed._);
+    await mqd.cli[cmd].apply(null, args);
   } catch (error) {
     console.error(error);
   }
