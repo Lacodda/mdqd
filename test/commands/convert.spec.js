@@ -24,7 +24,7 @@ describe('convert file when it exists', () => {
       try {
         const tmpPath = await createFilePath('convert');
         const tmpHtmlFile = path.join(tmpPath, 'index.html');
-        const result = await exec(`./bin/mqd convert ${testMdFile} ${tmpHtmlFile}`);
+        const result = await exec(`node ./bin/mqd convert ${testMdFile} ${tmpHtmlFile}`);
         expect(`File ${testMdFile} successfully converted\n`).to.equal(result);
       } catch (error) {
         assert.isNotOk('convert', error);
