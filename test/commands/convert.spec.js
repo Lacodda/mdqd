@@ -30,8 +30,8 @@ describe('convert file when it exists', () => {
         const tmpFile = await readFile(outputFile, 'utf-8');
 
         assert.equal(
-          tmpFile.replace(/[\n ]/g, ''),
-          fixtureFile.replace(/[\n ]/g, '')
+          tmpFile.replace(/[\r\n|\r|\n ]/g, ''),
+          fixtureFile.replace(/[\r\n|\r|\n ]/g, '')
         );
       } catch (error) {
         assert.isNotOk('conformity', error);
