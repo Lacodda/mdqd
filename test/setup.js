@@ -16,13 +16,14 @@ global.expect = chai.expect;
 global.chai = chai;
 global.mqd = './bin/mqd';
 global.testPath = path.join(__dirname, testTempFolder);
-global.createFilePath = async name => {
+global.createFilePath = async (name) => {
   const filePath = path.join(__dirname, testTempFolder, name);
   await ensureDir(filePath);
   return filePath;
 };
-global.removeFolder = name => remove(name).catch(err => {
-  console.log(err);
-  throw err;
-});
+global.removeFolder = (name) =>
+  remove(name).catch((err) => {
+    console.log(err);
+    throw err;
+  });
 global.testMdFile = path.join(__dirname, 'fixtures', 'index.md');
