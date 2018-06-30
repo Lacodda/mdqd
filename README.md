@@ -6,6 +6,7 @@
 
 [![NPM Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
+[![Coverage Status][coveralls-image]][coveralls-url]
 
 ## Description
 mqd description
@@ -21,7 +22,7 @@ npm i mqd
 ## Usage
 
 ```bash
-
+mqd convert path/to/source/file.md path/to/destination/directory
 ```
 
 ## Tests
@@ -38,3 +39,6 @@ npm test
 
 [travis-image]: https://img.shields.io/travis/lacodda/mqd/master.svg?style=flat-square
 [travis-url]: https://travis-ci.org/lacodda/mqd
+
+[coveralls-image]: https://img.shields.io/coveralls/lacodda/mqd/master.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/github/lacodda/mqd?branch=master

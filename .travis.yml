@@ -3,12 +3,7 @@ compiler: clang
 language: node_js
 
 node_js:
-  - "9"
   - "8"
-
-os:
-  - linux
-  - osx
 
 branches:
   only:
