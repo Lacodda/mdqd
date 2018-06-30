@@ -71,5 +71,15 @@ describe('convert file when it exists', () => {
         assert.isNotOk('convert', error);
       }
     });
+
+    it('catch error, not specified source directory', async () => {
+      try {
+        const tmpPath = await createFilePath('convert');
+        const result = await exec(`node ./bin/mqd convert`);
+        expect('Set "path", please.').to.equal(result);
+      } catch (error) {
+        assert.isOk('convert', 'error was caught');
+      }
+    });
   });
 });
