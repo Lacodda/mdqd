@@ -9,14 +9,14 @@
 [![Coverage Status][coveralls-image]][coveralls-url]
 
 ## Description
-mqd description
+mqd is command line tool for quickly creating static documentation from the markdown files
 
 ## Installation
 
 You can install the package from npm
 
 ```bash
-npm i mqd
+npm i -g mqd
 ```
 
 ## Usage
