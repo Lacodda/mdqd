@@ -5,7 +5,6 @@ const pkg = require('../package.json');
 const path = require('path');
 const chai = require('chai');
 const { remove, ensureDir } = require('fs-extra');
-const { mkdir } = require('../lib/util/fs');
 
 const testTempFolder = 'tmp';
 
