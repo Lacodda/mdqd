@@ -22,7 +22,7 @@
     "documentation"
   ],
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha -R spec ./test/setup.js ./test/**/*.spec.js --timeout=3000",
+    "test": "nyc --reporter=html --reporter=text mocha -R spec ./test/setup.js ./test/*.spec.js ./test/**/*.spec.js --timeout=3000",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "preferGlobal": true,
