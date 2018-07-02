@@ -1,5 +1,5 @@
 const { resolve } = require('path');
-const { access, readdir, readFile } = require('../../lib/util/fs');
+const { access, readdir, readFile, writeFile } = require('../../lib/util/fs');
 
 // FIXME: move to config
 const fixturesInputPath = resolve(__dirname, '..', 'fixtures', 'index.md');
@@ -61,6 +61,32 @@ describe('test fs functions', () => {
         assert.isNotOk('readFile', `error wasn't caught`);
       } catch (error) {
         assert.isOk('readFile', 'error was caught');
+      }
+    });
+  });
+
+  describe('writeFile', () => {
+    it('writeFile worked', async () => {
+      try {
+        // TODO: add param to createFilePath function for return path without creating dirs
+        const tmpPath = await createFilePath('write-file');
+        await writeFile(resolve(tmpPath, 'index.md'), '# Test', 'utf8');
+        assert.isOk('writeFile', 'file written');
+      } catch (error) {
+        assert.isNotOk('writeFile', 'error was caught');
+      }
+    });
+
+    it('catch error in writeFile', async () => {
+      try {
+        const result = await writeFile(
+          './non-existent-directory/index.md',
+          '# Test',
+          'utf8'
+        );
+        assert.isNotOk('writeFile', `error wasn't caught`);
+      } catch (error) {
+        assert.isOk('writeFile', 'error was caught');
       }
     });
   });
