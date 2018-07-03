@@ -1,5 +1,11 @@
 const { resolve } = require('path');
-const { access, readdir, readFile, writeFile } = require('../../lib/util/fs');
+const {
+  access,
+  readdir,
+  readFile,
+  writeFile,
+  stat
+} = require('../../lib/util/fs');
 
 // FIXME: move to config
 const fixturesInputPath = resolve(__dirname, '..', 'fixtures', 'index.md');
@@ -87,6 +93,26 @@ describe('test fs functions', () => {
         assert.isNotOk('writeFile', `error wasn't caught`);
       } catch (error) {
         assert.isOk('writeFile', 'error was caught');
+      }
+    });
+  });
+
+  describe('stat', () => {
+    it('stat worked', async () => {
+      try {
+        const result = await stat(fixturesInputPath);
+        expect(result.isFile()).to.equal(true);
+      } catch (error) {
+        assert.isNotOk('stat', 'this will fail');
+      }
+    });
+
+    it('catch error in stat', async () => {
+      try {
+        const result = await stat('./non-existent-file');
+        assert.isNotOk('stat', `error wasn't caught`);
+      } catch (error) {
+        assert.isOk('stat', 'error was caught');
       }
     });
   });

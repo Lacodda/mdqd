@@ -10,6 +10,6 @@ const cmd = args.shift();
     await mqd.load();
     await mqd.cli[cmd].apply(null, args);
   } catch (error) {
-    console.error(error);
+    console.error(error.message);
   }
 })();

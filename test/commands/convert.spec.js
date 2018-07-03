@@ -38,6 +38,16 @@ describe('convert file when it exists', () => {
       }
     });
 
+    it('catch error, not existant source file', async () => {
+      try {
+        const tmpPath = await createFilePath('convert');
+        const result = await convert('./non-existent-file.md', tmpPath);
+        assert.isNotOk('convert', `error wasn't caught`);
+      } catch (error) {
+        assert.isOk('convert', 'error was caught');
+      }
+    });
+
     it('catch error, not specified source directory', async () => {
       try {
         const tmpPath = await createFilePath('convert');
