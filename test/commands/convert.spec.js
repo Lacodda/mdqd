@@ -6,6 +6,7 @@ const { access, readFile } = require('../../lib/util/fs');
 // FIXME: move to config
 const fixturesInputPath = resolve(__dirname, '..', 'fixtures', 'index.md');
 const fixturesOutputPath = resolve(__dirname, '..', 'fixtures', 'output.html');
+const fixturesEmptyDirPath = resolve(__dirname, '..', 'fixtures', 'empty-dir');
 const outputFile = resolve(__dirname, '..', 'tmp', 'convert', 'index.html');
 
 describe('convert file when it exists', () => {
@@ -53,6 +54,16 @@ describe('convert file when it exists', () => {
         const tmpPath = await createFilePath('convert');
         const result = await convert();
         expect('Set "path", please.').to.equal(result);
+      } catch (error) {
+        assert.isOk('convert', 'error was caught');
+      }
+    });
+
+    it("catch error, directory doesn't contain markdown files", async () => {
+      try {
+        const tmpPath = await createFilePath('convert');
+        const result = await convert(fixturesEmptyDirPath, tmpPath);
+        assert.isNotOk('convert', `error wasn't caught`);
       } catch (error) {
         assert.isOk('convert', 'error was caught');
       }
