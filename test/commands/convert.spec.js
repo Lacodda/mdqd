@@ -5,6 +5,7 @@ const { access, readFile } = require('../../lib/util/fs');
 
 // FIXME: move to config
 const fixturesInputPath = resolve(__dirname, '..', 'fixtures', 'index.md');
+const fixturesInputSourcePath = resolve(__dirname, '..', 'fixtures', 'source');
 const fixturesOutputPath = resolve(__dirname, '..', 'fixtures', 'output.html');
 const fixturesEmptyDirPath = resolve(__dirname, '..', 'fixtures', 'empty-dir');
 const outputFile = resolve(__dirname, '..', 'tmp', 'convert', 'index.html');
@@ -19,6 +20,16 @@ describe('convert file when it exists', () => {
         const tmpPath = await createFilePath('convert');
         const result = await convert(testMdFile, tmpPath);
         expect(testMdFile).to.equal(result);
+      } catch (error) {
+        assert.isNotOk('convert', error);
+      }
+    });
+
+    it('can convert', async () => {
+      try {
+        const tmpPath = await createFilePath('convert');
+        const result = await convert(fixturesInputSourcePath, tmpPath);
+        expect(fixturesInputSourcePath).to.equal(result);
       } catch (error) {
         assert.isNotOk('convert', error);
       }
