@@ -1,4 +1,5 @@
 const { resolve } = require('path');
+const { remove } = require('fs-extra');
 const {
   access,
   readdir,
@@ -11,6 +12,8 @@ const {
 const fixturesInputPath = resolve(__dirname, '..', 'fixtures', 'index.md');
 
 describe('test fs functions', () => {
+  beforeEach(async () => await remove(tmpPath));
+
   describe('access', () => {
     it('access worked', async () => {
       try {
@@ -74,8 +77,7 @@ describe('test fs functions', () => {
   describe('writeFile', () => {
     it('writeFile worked', async () => {
       try {
-        // TODO: add param to createFilePath function for return path without creating dirs
-        const tmpPath = await createFilePath('write-file');
+        const tmpPath = getTmpPath('write-file');
         await writeFile(resolve(tmpPath, 'index.md'), '# Test', 'utf8');
         assert.isOk('writeFile', 'file written');
       } catch (error) {
@@ -85,11 +87,8 @@ describe('test fs functions', () => {
 
     it('catch error in writeFile', async () => {
       try {
-        const result = await writeFile(
-          './non-existent-directory/index.md',
-          '# Test',
-          'utf8'
-        );
+        const tmpPath = getTmpPath('write-file');
+        await writeFile(resolve(tmpPath, 'index.md'), '# Test', 'non-existent');
         assert.isNotOk('writeFile', `error wasn't caught`);
       } catch (error) {
         assert.isOk('writeFile', 'error was caught');

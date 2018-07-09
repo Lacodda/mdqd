@@ -2,11 +2,12 @@
 
 process.env.NODE_ENV = 'test';
 const pkg = require('../package.json');
-const path = require('path');
+const { join, resolve } = require('path');
 const chai = require('chai');
 const { remove, ensureDir } = require('fs-extra');
 
-const testTempFolder = 'tmp';
+const tmpDir = 'tmp';
+const fixturesDir = 'fixtures';
 
 // globals
 global.pkg = pkg;
@@ -14,15 +15,8 @@ global.assert = chai.assert;
 global.expect = chai.expect;
 global.chai = chai;
 global.mqd = './bin/mqd';
-global.testPath = path.join(__dirname, testTempFolder);
-global.createFilePath = async (name) => {
-  const filePath = path.join(__dirname, testTempFolder, name);
-  await ensureDir(filePath);
-  return filePath;
-};
-global.removeFolder = (name) =>
-  remove(name).catch((err) => {
-    console.log(err);
-    throw err;
-  });
-global.testMdFile = path.join(__dirname, 'fixtures', 'index.md');
+global.tmpPath = resolve(join(__dirname, tmpDir));
+global.fixturesPath = resolve(join(__dirname, fixturesDir));
+global.testMdFile = join(fixturesPath, 'index.md');
+
+global.getTmpPath = (name) => resolve(join(tmpPath, name));

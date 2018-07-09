@@ -1,4 +1,5 @@
 const { resolve } = require('path');
+const { remove } = require('fs-extra');
 const convert = require('../../lib/commands/convert').api;
 const exec = require('../../lib/util/exec');
 const { access, readFile } = require('../../lib/util/fs');
@@ -11,13 +12,12 @@ const fixturesEmptyDirPath = resolve(__dirname, '..', 'fixtures', 'empty-dir');
 const outputFile = resolve(__dirname, '..', 'tmp', 'convert', 'index.html');
 
 describe('convert file when it exists', () => {
-  // FIXME: return directory clearing
-  // beforeEach(() => removeFolder(tmpPath));
+  beforeEach(async () => await remove(tmpPath));
 
   describe('api', () => {
     it('can convert', async () => {
       try {
-        const tmpPath = await createFilePath('convert');
+        const tmpPath = getTmpPath('convert');
         const result = await convert(testMdFile, tmpPath);
         expect(testMdFile).to.equal(result);
       } catch (error) {
@@ -27,7 +27,7 @@ describe('convert file when it exists', () => {
 
     it('can convert', async () => {
       try {
-        const tmpPath = await createFilePath('convert');
+        const tmpPath = getTmpPath('convert');
         const result = await convert(fixturesInputSourcePath, tmpPath);
         expect(fixturesInputSourcePath).to.equal(result);
       } catch (error) {
@@ -37,7 +37,8 @@ describe('convert file when it exists', () => {
 
     it('conformity test', async () => {
       try {
-        // FIXME: add a separate file generation
+        const tmpPath = getTmpPath('convert');
+        await convert(testMdFile, tmpPath);
         const fixtureFile = await readFile(fixturesOutputPath, 'utf-8');
         const tmpFile = await readFile(outputFile, 'utf-8');
 
@@ -52,7 +53,7 @@ describe('convert file when it exists', () => {
 
     it('catch error, not existant source file', async () => {
       try {
-        const tmpPath = await createFilePath('convert');
+        const tmpPath = getTmpPath('convert');
         const result = await convert('./non-existent-file.md', tmpPath);
         assert.isNotOk('convert', `error wasn't caught`);
       } catch (error) {
@@ -62,7 +63,7 @@ describe('convert file when it exists', () => {
 
     it('catch error, not specified source directory', async () => {
       try {
-        const tmpPath = await createFilePath('convert');
+        const tmpPath = getTmpPath('convert');
         const result = await convert();
         expect('Set "path", please.').to.equal(result);
       } catch (error) {
@@ -72,7 +73,7 @@ describe('convert file when it exists', () => {
 
     it("catch error, directory doesn't contain markdown files", async () => {
       try {
-        const tmpPath = await createFilePath('convert');
+        const tmpPath = getTmpPath('convert');
         const result = await convert(fixturesEmptyDirPath, tmpPath);
         assert.isNotOk('convert', `error wasn't caught`);
       } catch (error) {
@@ -82,7 +83,7 @@ describe('convert file when it exists', () => {
 
     it('catch error, not specified destination directory', async () => {
       try {
-        const tmpPath = await createFilePath('convert');
+        const tmpPath = getTmpPath('convert');
         const result = await convert(testMdFile);
         expect('Set "target path", please.').to.equal(result);
       } catch (error) {
@@ -94,7 +95,7 @@ describe('convert file when it exists', () => {
   describe('cli', () => {
     it('can convert', async () => {
       try {
-        const tmpPath = await createFilePath('convert');
+        const tmpPath = getTmpPath('convert');
         const result = await exec(
           `node ./bin/mqd convert ${testMdFile} ${tmpPath}`
         );
@@ -106,7 +107,7 @@ describe('convert file when it exists', () => {
 
     it('catch error, not specified source directory', async () => {
       try {
-        const tmpPath = await createFilePath('convert');
+        const tmpPath = getTmpPath('convert');
         const result = await exec(`node ./bin/mqd convert`);
         expect('Set "path", please.').to.equal(result);
       } catch (error) {
