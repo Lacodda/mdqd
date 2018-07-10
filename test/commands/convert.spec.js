@@ -2,14 +2,7 @@ const { resolve } = require('path');
 const { remove } = require('fs-extra');
 const convert = require('../../lib/commands/convert').api;
 const exec = require('../../lib/util/exec');
-const { access, readFile } = require('../../lib/util/fs');
-
-// FIXME: move to config
-const fixturesInputPath = resolve(__dirname, '..', 'fixtures', 'index.md');
-const fixturesInputSourcePath = resolve(__dirname, '..', 'fixtures', 'source');
-const fixturesOutputPath = resolve(__dirname, '..', 'fixtures', 'output.html');
-const fixturesEmptyDirPath = resolve(__dirname, '..', 'fixtures', 'empty-dir');
-const outputFile = resolve(__dirname, '..', 'tmp', 'convert', 'index.html');
+const { readFile } = require('../../lib/util/fs');
 
 describe('convert file when it exists', () => {
   beforeEach(async () => await remove(tmpPath));
@@ -40,7 +33,7 @@ describe('convert file when it exists', () => {
         const tmpPath = getTmpPath('convert');
         await convert(testMdFile, tmpPath);
         const fixtureFile = await readFile(fixturesOutputPath, 'utf-8');
-        const tmpFile = await readFile(outputFile, 'utf-8');
+        const tmpFile = await readFile(resolve(tmpPath, 'index.html'), 'utf-8');
 
         assert.equal(
           tmpFile.replace(/[\r\n|\r|\n ]/g, ''),

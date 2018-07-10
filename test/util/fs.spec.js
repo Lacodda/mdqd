@@ -8,9 +8,6 @@ const {
   stat
 } = require('../../lib/util/fs');
 
-// FIXME: move to config
-const fixturesInputPath = resolve(__dirname, '..', 'fixtures', 'index.md');
-
 describe('test fs functions', () => {
   beforeEach(async () => await remove(tmpPath));
 
@@ -57,7 +54,7 @@ describe('test fs functions', () => {
   describe('readFile', () => {
     it('readFile worked', async () => {
       try {
-        const result = await readFile(fixturesInputPath, 'utf8');
+        const result = await readFile(testMdFile, 'utf8');
         expect('# Test').to.equal(result);
       } catch (error) {
         assert.isNotOk('readFile', 'this will fail');
@@ -99,7 +96,7 @@ describe('test fs functions', () => {
   describe('stat', () => {
     it('stat worked', async () => {
       try {
-        const result = await stat(fixturesInputPath);
+        const result = await stat(testMdFile);
         expect(result.isFile()).to.equal(true);
       } catch (error) {
         assert.isNotOk('stat', 'this will fail');
