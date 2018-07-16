@@ -1,0 +1,7 @@
+{
+  "menu": [
+    { "file": "lorem-ipsum.md", "name": "Lorem ipsum" },
+    { "file": "enim-sed-faucibus.md", "name": "Enim sed faucibus" },
+    { "file": "quis-varius-quam.md", "name": "Quis varius quam" }
+  ]
+}
