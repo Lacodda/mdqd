@@ -1,11 +1,27 @@
 const { resolve } = require('path');
-const { remove } = require('fs-extra');
+const { remove, ensureDir } = require('fs-extra');
 const init = require('../../lib/commands/init').api;
 const exec = require('../../lib/util/exec');
-const { readFile } = require('../../lib/util/fs');
+const { readFile, writeFile } = require('../../lib/util/fs');
 
 describe('init mqd.json file', () => {
   beforeEach(async () => await remove(tmpPath));
+
+  describe('api', () => {
+    it('can init', async () => {
+      try {
+        const tmpPath = getTmpPath('init');
+        await ensureDir(tmpPath);
+        // create test md file
+        await writeFile(resolve(tmpPath, 'index.md'), '# Test', 'utf8');
+
+        const result = await init(tmpPath);
+        expect(`${tmpPath}/mqd.json`).to.equal(result);
+      } catch (error) {
+        assert.isNotOk('init', error);
+      }
+    });
+  });
 
   describe('cli', () => {
     it('can init', async () => {

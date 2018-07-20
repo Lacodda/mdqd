@@ -67,7 +67,7 @@ describe('convert file when it exists', () => {
     it("catch error, directory doesn't contain markdown files", async () => {
       try {
         const tmpPath = getTmpPath('convert');
-        const result = await convert(fixturesEmptyDirPath, tmpPath);
+        await convert(fixturesEmptyDirPath, tmpPath);
         assert.isNotOk('convert', `error wasn't caught`);
       } catch (error) {
         assert.isOk('convert', 'error was caught');
