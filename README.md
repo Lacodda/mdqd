@@ -21,8 +21,36 @@ npm i -g mqd
 
 ## Usage
 
+In order to use the utility `mqd` it is enough to specify either a separate file or directory in which files with markdown markup are located:
+
 ```bash
 mqd convert path/to/source/file.md path/to/destination/directory
+
+// or
+
+mqd convert path/to/source/directory path/to/destination/directory
+```
+
+## Configuration file
+
+For more convenient work with the utility `mqd` you can use the file to configure your project.
+
+The configuration file should be located in the root of the project and have the name `mqd.json`.
+
+To automatically create a file, you need to run the command in the project's root folder:
+
+```bash
+
+mqd init
+
+```
+
+You can also pass the path to the folder where you want to initialize the configuration file:
+
+```bash
+
+mqd init path/to/destination/directory
+
 ```
 
 ## Tests
