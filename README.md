@@ -40,18 +40,45 @@ The configuration file should be located in the root of the project and have the
 To automatically create a file, you need to run the command in the project's root folder:
 
 ```bash
-
 mqd init
-
 ```
 
 You can also pass the path to the folder where you want to initialize the configuration file:
 
 ```bash
+mqd init path/to/source/directory
+```
 
-mqd init path/to/destination/directory
+## Menu
+
+For easy navigation between files, a menu is automatically created. By default, the menu is presented in the form of a list consisting of file names without an extension.
 
 ```
+enim-sed-faucibus
+lorem-ipsum
+quis-varius-quam
+```
+
+This kind of appearance may not seem very pleasant and flexible. But there is a way to make the navigation menu display the way you want.
+To do this, you need to specify in the `menu` section of the `mqd.json` file an array of menu objects consisting of the name of the menu item and the path to the file:
+
+```json
+{
+  "menu": [
+    { "file": "lorem-ipsum.md", "name": "Lorem ipsum" },
+    { "file": "enim-sed-faucibus.md", "name": "Enim sed faucibus" },
+    { "file": "quis-varius-quam.md", "name": "Quis varius quam" }
+  ]
+}
+```
+
+For a simpler start, you can use the command:
+
+```bash
+mqd init
+```
+
+This command not only initializes the `mqd.json` file, but also populates the menu array with all available files in the directory with the extension `.md`.
 
 ## Tests
 
