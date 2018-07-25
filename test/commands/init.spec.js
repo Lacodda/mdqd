@@ -27,7 +27,7 @@ describe('init mqd.json file', () => {
     it('can init', async () => {
       try {
         const tmpPath = getTmpPath('init');
-        const result = await exec(`${mqd} init ${tmpPath}`);
+        const result = await exec(`${bin} init ${tmpPath}`);
         expect(`File ${resolve(tmpPath, 'mqd.json')} successfully initialized\n`).to.equal(
           result
         );
@@ -38,7 +38,7 @@ describe('init mqd.json file', () => {
 
     it('catch error, when the incorrect path is specified', async () => {
       try {
-        await exec(`${mqd} init package.json`);
+        await exec(`${bin} init package.json`);
         assert.isNotOk('init', `error wasn't caught`);
       } catch (error) {
         assert.isOk('init', 'error was caught');

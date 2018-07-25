@@ -88,7 +88,7 @@ describe('convert file when it exists', () => {
       try {
         const tmpPath = getTmpPath('convert');
         const result = await exec(
-          `${mqd} convert ${testMdFile} ${tmpPath}`
+          `${bin} convert ${testMdFile} ${tmpPath}`
         );
         expect(`File ${testMdFile} successfully converted\n`).to.equal(result);
       } catch (error) {
@@ -98,7 +98,7 @@ describe('convert file when it exists', () => {
 
     it('catch error, not specified source directory', async () => {
       try {
-        await exec(`${mqd} convert`);
+        await exec(`${bin} convert`);
         assert.isNotOk('convert', `error wasn't caught`);
       } catch (error) {
         assert.isOk('convert', 'error was caught');

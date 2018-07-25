@@ -4,8 +4,9 @@ process.env.NODE_ENV = 'test';
 const pkg = require('../package.json');
 const { join, resolve } = require('path');
 const chai = require('chai');
-const { remove, ensureDir } = require('fs-extra');
 
+// settings
+const bin = 'node ./bin/mqd';
 const tmpDir = 'tmp';
 const fixturesDir = 'fixtures';
 
@@ -14,7 +15,7 @@ global.pkg = pkg;
 global.assert = chai.assert;
 global.expect = chai.expect;
 global.chai = chai;
-global.mqd = 'node ./bin/mqd';
+global.bin = bin;
 global.tmpPath = resolve(join(__dirname, tmpDir));
 global.fixturesPath = resolve(join(__dirname, fixturesDir));
 global.testMdFile = join(fixturesPath, 'index.md');
