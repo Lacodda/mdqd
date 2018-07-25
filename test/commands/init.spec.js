@@ -16,7 +16,7 @@ describe('init mqd.json file', () => {
         await writeFile(resolve(tmpPath, 'index.md'), '# Test', 'utf8');
 
         const result = await init(tmpPath);
-        expect(`${tmpPath}/mqd.json`).to.equal(result);
+        expect(resolve(tmpPath, 'mqd.json')).to.equal(result);
       } catch (error) {
         assert.isNotOk('init', error);
       }
@@ -27,8 +27,8 @@ describe('init mqd.json file', () => {
     it('can init', async () => {
       try {
         const tmpPath = getTmpPath('init');
-        const result = await exec(`node ./bin/mqd init ${tmpPath}`);
-        expect(`File ${tmpPath}/mqd.json successfully inited\n`).to.equal(
+        const result = await exec(`${mqd} init ${tmpPath}`);
+        expect(`File ${resolve(tmpPath, 'mqd.json')} successfully initialized\n`).to.equal(
           result
         );
       } catch (error) {
@@ -38,7 +38,7 @@ describe('init mqd.json file', () => {
 
     it('catch error, when the incorrect path is specified', async () => {
       try {
-        await exec(`node ./bin/mqd init package.json`);
+        await exec(`${mqd} init package.json`);
         assert.isNotOk('init', `error wasn't caught`);
       } catch (error) {
         assert.isOk('init', 'error was caught');

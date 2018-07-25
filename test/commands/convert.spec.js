@@ -47,7 +47,7 @@ describe('convert file when it exists', () => {
     it('catch error, not existant source file', async () => {
       try {
         const tmpPath = getTmpPath('convert');
-        const result = await convert('./non-existent-file.md', tmpPath);
+        await convert('./non-existent-file.md', tmpPath);
         assert.isNotOk('convert', `error wasn't caught`);
       } catch (error) {
         assert.isOk('convert', 'error was caught');
@@ -56,9 +56,8 @@ describe('convert file when it exists', () => {
 
     it('catch error, not specified source directory', async () => {
       try {
-        const tmpPath = getTmpPath('convert');
-        const result = await convert();
-        expect('Set "path", please.').to.equal(result);
+        await convert();
+        assert.isNotOk('convert', `error wasn't caught`);
       } catch (error) {
         assert.isOk('convert', 'error was caught');
       }
@@ -76,9 +75,8 @@ describe('convert file when it exists', () => {
 
     it('catch error, not specified destination directory', async () => {
       try {
-        const tmpPath = getTmpPath('convert');
         const result = await convert(testMdFile);
-        expect('Set "target path", please.').to.equal(result);
+        assert.isNotOk('convert', `error wasn't caught`);
       } catch (error) {
         assert.isOk('convert', 'error was caught');
       }
@@ -90,7 +88,7 @@ describe('convert file when it exists', () => {
       try {
         const tmpPath = getTmpPath('convert');
         const result = await exec(
-          `node ./bin/mqd convert ${testMdFile} ${tmpPath}`
+          `${mqd} convert ${testMdFile} ${tmpPath}`
         );
         expect(`File ${testMdFile} successfully converted\n`).to.equal(result);
       } catch (error) {
@@ -100,9 +98,8 @@ describe('convert file when it exists', () => {
 
     it('catch error, not specified source directory', async () => {
       try {
-        const tmpPath = getTmpPath('convert');
-        const result = await exec(`node ./bin/mqd convert`);
-        expect('Set "path", please.').to.equal(result);
+        await exec(`${mqd} convert`);
+        assert.isNotOk('convert', `error wasn't caught`);
       } catch (error) {
         assert.isOk('convert', 'error was caught');
       }
