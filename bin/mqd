@@ -2,7 +2,7 @@
 
 const args = require('yargs').argv._;
 const mqd = require('../lib/mqd');
-const help = require('../lib/help');
+const help = require('../lib/commands/help');
 
 const cmd = args.shift();
 
