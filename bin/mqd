@@ -1,21 +1,29 @@
 #!/usr/bin/env node
 
-const args = require('yargs').argv._;
-const mqd = require('../lib/mqd');
-const help = require('../lib/commands/help');
+require('yargs')
+  .commandDir('../lib/commands')
+  .demandCommand()
+  .help()
+  .alias('h', 'help')
+  .alias('v', 'version')
+  .argv;
 
-const cmd = args.shift();
+// const args = require('yargs').argv._;
+// const mqd = require('../lib/mqd');
+// const help = require('../lib/commands/help');
 
-(async () => {
-  try {
-    await mqd.load();
+// const cmd = args.shift();
 
-    if (!mqd.cli[cmd]) {
-      return help.cli();
-    }
+// (async () => {
+//   try {
+//     await mqd.load();
 
-    await mqd.cli[cmd].apply(null, args);
-  } catch (error) {
-    console.error(error.message);
-  }
-})();
+//     if (!mqd.cli[cmd]) {
+//       return help.cli();
+//     }
+
+//     await mqd.cli[cmd].apply(null, args);
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// })();
