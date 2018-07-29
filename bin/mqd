@@ -7,23 +7,3 @@ require('yargs')
   .alias('h', 'help')
   .alias('v', 'version')
   .argv;
-
-// const args = require('yargs').argv._;
-// const mqd = require('../lib/mqd');
-// const help = require('../lib/commands/help');
-
-// const cmd = args.shift();
-
-// (async () => {
-//   try {
-//     await mqd.load();
-
-//     if (!mqd.cli[cmd]) {
-//       return help.cli();
-//     }
-
-//     await mqd.cli[cmd].apply(null, args);
-//   } catch (error) {
-//     console.error(error.message);
-//   }
-// })();
